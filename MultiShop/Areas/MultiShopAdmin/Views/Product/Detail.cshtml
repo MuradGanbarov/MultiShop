@@ -1,0 +1,38 @@
+﻿﻿
+@model Product
+<div class="container">
+    <div class="card mb-3" style="max-width: 99%;">
+        <div class="row g-0">
+            @foreach (ProductImage productImage in Model.ProductImages)
+            {
+                <div class="col-md-4">
+                    <img src="~/img/@productImage.URL" class="img-fluid rounded-start w-75" alt="@productImage.Alternative">
+                </div>
+            }
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Name: @Model.Name</h5>
+                    <p class="card-text">Description: @Model.Description</p>
+                    <p class="card-text">Category: @Model.Category.Name</p>
+                    <p class="card-text">
+                        Colors: @foreach (ProductColor productColor in Model.ProductColors)
+                        {
+                            @productColor.Color.Name
+
+                            @(productColor != Model.ProductColors[Model.ProductColors.Count - 1] ? ", " : "")
+                        }
+                    </p>
+                    <p class="card-text">
+                        Sizes: @foreach (ProductSize productSize in Model.ProductSizes)
+                        {
+                            @productSize.Size.Name
+
+                            @(productSize != Model.ProductSizes[Model.ProductSizes.Count - 1] ? ", " : "")
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-light fw-bold fs-4" asp-action="index" asp-controller="product">Back</a>

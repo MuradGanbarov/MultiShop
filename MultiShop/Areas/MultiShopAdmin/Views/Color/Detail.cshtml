@@ -1,0 +1,24 @@
+﻿@model Color
+<div class="container">
+    <div class="row">
+
+        @foreach (ProductColor color in Model.ProductColors)
+        {
+            <div class=".table-striped">
+                <div class="col-xl-3 col-md-4 col-sm-6">
+                    <div class="card" style="width: 20rem;">
+                        <img class="primary-img"
+                             src="~/assets/images/product/@color.Product.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==true).URL"
+                             alt="Product Images" />
+                        <div class="card-body">
+                            <h5 class="card-title">@color.Product.Name</h5>
+                            <p class="card-text">@color.Product.Description</p>
+                            <a asp-action="Index" asp-controller="color" class="btn btn-primary">Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

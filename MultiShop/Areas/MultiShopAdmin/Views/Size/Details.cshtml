@@ -1,0 +1,25 @@
+﻿@model Size
+<div class="container">
+    <div class="row">
+        @foreach (ProductSize size in Model.ProductSizes)
+        {
+            <div class="table-striped">
+                <div class="col-xl-3 col-md-4 col-sm-6">
+                    <div class="card" style="width: 20rem;">
+                        <img class="primary-img"
+                             src="~/assets/images/product/@size.Product.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==true).URL"
+                             alt="Product Images" />
+                        <div class="card-body">
+                            <h5 class="card-title">@size.Product.Name</h5>
+                            <p class="card-text">@size.Product.Description</p>
+                            <a asp-action="Index" asp-controller="size" class="btn btn-primary">Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+

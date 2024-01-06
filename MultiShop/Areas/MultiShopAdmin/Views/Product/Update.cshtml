@@ -1,0 +1,100 @@
+﻿@{
+    ProductImage main = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == true);
+}
+
+@model UpdateProductVM
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Update Product</h4>
+
+                        <form class="forms-sample" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <img style="width:150px;height:150px;" src="~/img/@main.URL" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MainPhoto">Main Image</label>
+                                <input asp-for="MainPhoto" class="form-control" accept="image/*">
+                                <span class="text-danger" asp-validation-for="MainPhoto"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SliderPhoto">Slider Image</label>
+                                <input asp-for="SliderPhoto" class="form-control" accept="image/*">
+                                <span class="text-danger" asp-validation-for="SliderPhoto"></span>
+                            </div>
+                            <div class="form-group d-flex">
+
+                                @foreach (ProductImage image in Model.ProductImages.Where(pi => pi.IsPrimary == false))
+                                {
+                                    <div class="position-relative">
+                                        <img style="width:150px;height:150px;" src="~/img/@image.URL" />
+                                        <button type="button" style="right:5px;top:5px;" class="cus-delete btn btn-danger position-absolute">X</button>
+                                        <input asp-for="SliderPhoto" type="hidden" value="@image.Id">
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Name">Name</label>
+                                <input asp-for="Name" class="form-control" placeholder="Name">
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Price">Price</label>
+                                <input asp-for="Price" class="form-control" placeholder="Price">
+                                <span class="text-danger" asp-validation-for="Price"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description">Description</label>
+                                <input asp-for="Description" class="form-control" placeholder="Description">
+                                <span class="text-danger" asp-validation-for="Description"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CategoryId">Category</label>
+                                <select asp-for="CategoryId" asp-items="new SelectList(@Model.Categories,nameof(Category.Id),nameof(Category.Name))" class="form-control">
+                                </select>
+
+                                <span class="text-danger" asp-validation-for="CategoryId"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ColorIds">Colors</label>
+
+                                <select asp-for="ColorIds" asp-items="new SelectList(@Model.Colors,nameof(Color.Id),nameof(Color.Name))" class="form-control">
+                                </select>
+
+                                <span class="text-danger" asp-validation-for="ColorIds"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SizeIds">Sizes</label>
+
+                                <select asp-for="SizeIds" asp-items="new SelectList(@Model.Sizes,nameof(Size.Id),nameof(Size.Name))" class="form-control">
+                                </select>
+
+                                <span class="text-danger" asp-validation-for="SizeIds"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <a asp-action="index" asp-controller="product" class="btn btn-light">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var btns = document.querySelectorAll(".cus-delete")
+
+    for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            btns[i].parentElement.remove()
+        })
+    }
+</script>

@@ -1,0 +1,19 @@
+﻿@model Slide
+
+<div class="row">
+    <div class="col-xl-3 col-md-4 col-sm-6">
+        <div class="card" style="width: 20rem;">
+            <img class="primary-img"
+                 src="~/assets/images/slider/@Model.Photo"
+                 alt="Product Images" />
+            <div class="card-body">
+                <h5 class="card-title"><span>Title:</span>@Model.Title</h5>
+                <p class="card-text"><span>Description:</span>@Model.Description</p>
+                <p class="card-text"><span>Order:</span>@Model.Order<p>
+                    <a asp-action="Index" asp-controller="slide" class="btn btn-primary">Go Back</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
