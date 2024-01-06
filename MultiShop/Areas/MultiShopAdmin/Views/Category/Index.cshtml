@@ -20,6 +20,9 @@
                                     Name
                                 </th>
                                 <th>
+                                    Image
+                                </th>
+                                <th>
                                     Product's Count
                                 </th>
                                 <th>
@@ -38,6 +41,9 @@
                                     </td>
                                     <td>
                                         @category.Name
+                                    </td>
+                                    <td>
+                                        <img style="width:150px;height:150px" src="~/category/@category.Image" />
                                     </td>
                                     <td>
                                         @category.Products.Count

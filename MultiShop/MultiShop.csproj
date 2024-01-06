@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\MultiShopAdmin\Data\" />
+    <Folder Include="wwwroot\category\" />
   </ItemGroup>
 
 </Project>

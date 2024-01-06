@@ -16,14 +16,11 @@ namespace MultiShop.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            List<Slide> slides = await _context.Slides.OrderBy(s=>s.Order).Take(3).ToListAsync();
-            List<Product> products = await _context.Products.Include(p => p.ProductImages).OrderByDescending(s => s.Id).ToListAsync();
-
             HomeVM vm = new()
             {
-                Slides = slides,
-                Products = products,
-                NewProduct = products.Take(8).ToList()
+                Slides = await _context.Slides.OrderBy(s=>s.Order).Take(3).ToListAsync(),
+                Products = await _context.Products.Include(p=>p.ProductImages).Include(p=>p.Category).ToListAsync(),
+                
             };
             return View(vm);
         }

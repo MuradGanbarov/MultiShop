@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fMONNvDKBVY921jmdhg75hwRzA8HPSoTS9yBcZBNJ/U=",
+  "Hash": "yFI84ViRAAZ3r/r4sUegOiyTGTSLfghVx9YlXavWT3g=",
   "Source": "MultiShop",
   "BasePath": "_content/MultiShop",
   "Mode": "Default",
@@ -1511,6 +1511,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
+    },
+    {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "category/9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "category/cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg"
     },
     {
       "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\css\\bootstrap.css",

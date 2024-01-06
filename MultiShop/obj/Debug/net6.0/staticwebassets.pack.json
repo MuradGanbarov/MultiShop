@@ -353,6 +353,14 @@
       "PackagePath": "staticwebassets\\admin\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
     },
     {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg",
+      "PackagePath": "staticwebassets\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg",
+      "PackagePath": "staticwebassets\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg"
+    },
+    {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\css\\bootstrap-grid.css"
     },

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MultiShop.Areas.MultiShopAdmin.Models;
+using MultiShop.Areas.MultiShopAdmin.Models.Utilities.Enums;
 using MultiShop.Areas.MultiShopAdmin.ViewModels;
 using MultiShop.DAL;
 using MultiShop.Models;
@@ -10,10 +12,12 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public CategoryController(AppDbContext context)
+        public CategoryController(AppDbContext context,IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public async Task<IActionResult> Index(int page)
         {
@@ -37,22 +41,28 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Create(CreateCategoryVM vm)
+        public async Task<IActionResult> Create(Category category)
         {
-            if (!ModelState.IsValid) return View();
+            if (ModelState.IsValid) return View();
 
-            bool result = _context.Categories.Any(c => c.Name == vm.Name);
-
-            if (result)
+            if (category.Photo is null)
             {
-                ModelState.AddModelError("Name", "This Category already exists");
-                return View();
+                ModelState.AddModelError("Photo", "Please choose image");
+                return View(category);
+            }
+            if (!category.Photo.IsValidType(FileType.Image))
+            {
+                ModelState.AddModelError("Photo", "Photo should be image type");
+                return View(category);
+            }
+            if (!category.Photo.IsValidSize(5, FileSize.Megabite))
+            {
+                ModelState.AddModelError("Photo", "Photo size can be less or equal 5mb");
+                return View(category);
             }
 
-            Category category = new()
-            {
-                Name = vm.Name,
-            };
+            category.Image = await category.Photo.CreateAsync(_env.WebRootPath, "category");
+
 
             await _context.Categories.AddAsync(category);
             await _context.SaveChangesAsync();
@@ -71,22 +81,38 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
         }
         [HttpPost]
         
-        public async Task<IActionResult> Update(int id,UpdateCategoryVM vm)
+        public async Task<IActionResult> Update(int id,Category category)
         {
-            if (!ModelState.IsValid) return View(vm);
-
+            if(id <=0) return BadRequest();
             Category existed = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
             if(existed is null) return NotFound();
-
-            bool ExistCheck = await _context.Categories.AnyAsync(c => c.Name.ToLower().Trim() == vm.Name.ToLower().Trim());
-
-            if (ExistCheck)
+            if (existed.Name is null) return NotFound();
+            if (ModelState.IsValid) return View(existed);
+            if(category.Photo is null)
             {
-                ModelState.AddModelError("Name", "This category already exists");
-                return View(vm);
+                string fileName = existed.Image;
+                _context.Entry(existed).CurrentValues.SetValues(category);
+                existed.Image= fileName;
+            }
+            else
+            {
+                if (!category.Photo.IsValidType(FileType.Image))
+                {
+                    ModelState.AddModelError("Photo", "Photo should be image type");
+                    return View(existed);
+                }
+                if (!category.Photo.IsValidSize(5, FileSize.Megabite))
+                {
+                    ModelState.AddModelError("Photo", "Please choose correct image");
+                    return View(existed);
+                }
+
+                FileValidator.Delete(_env.WebRootPath, "category", existed.Image);
+                _context.Entry(existed).CurrentValues.SetValues(category);
+                existed.Image = await category.Photo.CreateAsync(_env.WebRootPath, "category");
             }
 
-            existed.Name = vm.Name;
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
@@ -98,7 +124,7 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
             Category existed = await _context.Categories.FirstOrDefaultAsync(c=>c.Id==id);
 
             if (existed is null) return NotFound();
-
+            FileValidator.Delete(_env.WebRootPath, "category", existed.Image);
             _context.Categories.Remove(existed);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

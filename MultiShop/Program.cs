@@ -9,8 +9,8 @@ builder.Services.AddScoped<LayoutService>();
 
 var app = builder.Build();
 
-app.UseStaticFiles();
 app.UseRouting();
+app.UseStaticFiles();
 app.MapControllerRoute(
     "default",
     "{area:exists}/{controller=home}/{action=index}/{id?}"
