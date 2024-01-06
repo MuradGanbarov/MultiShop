@@ -16,25 +16,23 @@ namespace MultiShop.Controllers
         }
         public async Task<IActionResult> Detail(int id)
         {
-            Product product = await _context.Products.
-                Include(p => p.ProductImages).
-                Include(p => p.Category).
-                Include(p => p.ProductColors).
-                ThenInclude(pc => pc.Color).
-                Include(pc => pc.ProductSizes).
-                ThenInclude(pc => pc.Size).FirstOrDefaultAsync(p=>p.Id==id);
+            if (id <= 0) return BadRequest();
 
-            if (product is null) return NotFound();
+            Product product = await _context.Products.Include(p => p.Category).Include(p => p.ProductImages).
+            Include(p => p.ProductColors).ThenInclude(pc => pc.Color).Include(p => p.ProductSizes).ThenInclude(ps => ps.Size).FirstOrDefaultAsync(p => p.Id == id);
 
-            List<Product> SimiliarProducts = await _context.Products.Include(product => product.ProductImages.Where(pi => pi.IsPrimary != false)).Where(p => p.CategoryId == product.CategoryId && product.Id != p.Id).Take(4).ToListAsync();
+            if(product is null) return NotFound();
 
-            ProductVM vm = new()
+
+            List<Product> products = await _context.Products.Include(p => p.ProductImages.Where(pi => pi.IsPrimary != null)).Where(p => p.CategoryId == product.CategoryId && p.Id != product.Id).ToListAsync();
+
+            DetailVM detailVM = new()
             {
                 Product = product,
-                SimilarProducts = SimiliarProducts,
+                RelatedProducts = products,
             };
 
-            return View(vm);
+            return View(detailVM);
         }
     }
 }

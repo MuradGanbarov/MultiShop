@@ -353,12 +353,52 @@
       "PackagePath": "staticwebassets\\admin\\vendors\\mdi\\fonts\\materialdesignicons-webfont.woff2"
     },
     {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\103261e7-f4cb-42d1-9567-ee7323e371cc.jpg",
+      "PackagePath": "staticwebassets\\category\\103261e7-f4cb-42d1-9567-ee7323e371cc.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\36c1e85d-8b11-49fd-9c7e-62d21db4f323.jpg",
+      "PackagePath": "staticwebassets\\category\\36c1e85d-8b11-49fd-9c7e-62d21db4f323.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\44feff10-182c-4fc5-8b40-c2d10eccdc23.jpg",
+      "PackagePath": "staticwebassets\\category\\44feff10-182c-4fc5-8b40-c2d10eccdc23.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\60586955-8c7f-4c7e-8ba8-181ad9554fde.jpg",
+      "PackagePath": "staticwebassets\\category\\60586955-8c7f-4c7e-8ba8-181ad9554fde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\7929a37d-4de0-4418-9e5c-5cb0edb8c78e.jpg",
+      "PackagePath": "staticwebassets\\category\\7929a37d-4de0-4418-9e5c-5cb0edb8c78e.jpg"
+    },
+    {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg",
       "PackagePath": "staticwebassets\\category\\9e596c8c-27e1-4930-bb67-f6a5f350a799.jpg"
     },
     {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\a203c6c1-6bc0-49f0-bc29-878a63dd8536.jpg",
+      "PackagePath": "staticwebassets\\category\\a203c6c1-6bc0-49f0-bc29-878a63dd8536.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\a8d8f9d9-26ad-4eb7-94b4-001dc2570792.jpg",
+      "PackagePath": "staticwebassets\\category\\a8d8f9d9-26ad-4eb7-94b4-001dc2570792.jpg"
+    },
+    {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg",
       "PackagePath": "staticwebassets\\category\\cf8385bb-045c-4e5d-85a3-1c71b5970fde.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\f3f9c6f3-8ef1-48e1-970a-4e5b09c31421.jpg",
+      "PackagePath": "staticwebassets\\category\\f3f9c6f3-8ef1-48e1-970a-4e5b09c31421.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\f48e6838-a62d-4b16-9302-0a4992700037.jpg",
+      "PackagePath": "staticwebassets\\category\\f48e6838-a62d-4b16-9302-0a4992700037.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\category\\fa394760-675f-4658-a0b6-1218182e540d.jpg",
+      "PackagePath": "staticwebassets\\category\\fa394760-675f-4658-a0b6-1218182e540d.jpg"
     },
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\css\\bootstrap-grid.css",
@@ -393,40 +433,20 @@
       "PackagePath": "staticwebassets\\css\\style.min.css"
     },
     {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\0f7749eb-b2bf-4ca4-a2ef-f1e995b4f9ed.jpg",
-      "PackagePath": "staticwebassets\\img\\0f7749eb-b2bf-4ca4-a2ef-f1e995b4f9ed.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\1e6fcc54-a51f-48d8-a17c-7d9f26afb150.jpg",
-      "PackagePath": "staticwebassets\\img\\1e6fcc54-a51f-48d8-a17c-7d9f26afb150.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\505a25c3-7dde-4feb-b72a-b638244a95fb.jpg",
-      "PackagePath": "staticwebassets\\img\\505a25c3-7dde-4feb-b72a-b638244a95fb.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\52ddb416-0ed8-4429-8095-b33dd70b5f1b.jpg",
-      "PackagePath": "staticwebassets\\img\\52ddb416-0ed8-4429-8095-b33dd70b5f1b.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\5c990c45-4a3b-4658-adc4-23eeaf522905.jpg",
-      "PackagePath": "staticwebassets\\img\\5c990c45-4a3b-4658-adc4-23eeaf522905.jpg"
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\599b95ee-1e16-47e4-90c8-a2311b5a6b0f.jpg",
+      "PackagePath": "staticwebassets\\img\\599b95ee-1e16-47e4-90c8-a2311b5a6b0f.jpg"
     },
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\62051034-9ce8-461b-ae0b-194182ba02d7.jpg",
       "PackagePath": "staticwebassets\\img\\62051034-9ce8-461b-ae0b-194182ba02d7.jpg"
     },
     {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\75a52ea9-9e36-47cf-94fb-fff44e446dc0.jpg",
-      "PackagePath": "staticwebassets\\img\\75a52ea9-9e36-47cf-94fb-fff44e446dc0.jpg"
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\6430c78a2198100b8be6531e7f90fbbb.jpg",
+      "PackagePath": "staticwebassets\\img\\6430c78a2198100b8be6531e7f90fbbb.jpg"
     },
     {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\7f725731-c242-4e81-9da3-b216b1200235.jpg",
-      "PackagePath": "staticwebassets\\img\\7f725731-c242-4e81-9da3-b216b1200235.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\81cc3b02-ade4-45af-a039-9572a26a3e7a.jpg",
-      "PackagePath": "staticwebassets\\img\\81cc3b02-ade4-45af-a039-9572a26a3e7a.jpg"
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\87d94653-4692-4a7c-905c-a84b72aac7f2.jpg",
+      "PackagePath": "staticwebassets\\img\\87d94653-4692-4a7c-905c-a84b72aac7f2.jpg"
     },
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\915c38c9-2502-44a9-a2fc-6ee3377832cb.jpg",
@@ -437,8 +457,32 @@
       "PackagePath": "staticwebassets\\img\\973f1c83-90ac-41fa-89b1-d77c6b1965a7.jpg"
     },
     {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\NikeAirForce.jpg",
+      "PackagePath": "staticwebassets\\img\\NikeAirForce.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\Swimwear.jpg",
+      "PackagePath": "staticwebassets\\img\\Swimwear.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\ad06d0b2-069e-4362-b018-c6b6af165d32.png",
+      "PackagePath": "staticwebassets\\img\\ad06d0b2-069e-4362-b018-c6b6af165d32.png"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\air-force-1-07-lv8-mens-shoes-140Nn2.png",
+      "PackagePath": "staticwebassets\\img\\air-force-1-07-lv8-mens-shoes-140Nn2.png"
+    },
+    {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\b33a4ead-8f51-4520-8fbc-525f75b2f1b4.jpg",
       "PackagePath": "staticwebassets\\img\\b33a4ead-8f51-4520-8fbc-525f75b2f1b4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\bc262b7f-50d3-4f49-91df-71229cf10824.jpg",
+      "PackagePath": "staticwebassets\\img\\bc262b7f-50d3-4f49-91df-71229cf10824.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\blazer.jpg",
+      "PackagePath": "staticwebassets\\img\\blazer.jpg"
     },
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\ca910472-2cc5-4e1b-ad93-db38d6c263c5.jpg",
@@ -489,6 +533,14 @@
       "PackagePath": "staticwebassets\\img\\f73b7bec-dbc8-4da1-ac7b-875b764ea21c.jpg"
     },
     {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\jacket.jpg",
+      "PackagePath": "staticwebassets\\img\\jacket.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\jumpsuit.jpg",
+      "PackagePath": "staticwebassets\\img\\jumpsuit.jpg"
+    },
+    {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\offer-1.jpg",
       "PackagePath": "staticwebassets\\img\\offer-1.jpg"
     },
@@ -535,6 +587,14 @@
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\product-9.jpg",
       "PackagePath": "staticwebassets\\img\\product-9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\sleapwear.jpg",
+      "PackagePath": "staticwebassets\\img\\sleapwear.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\sportwear.jpg",
+      "PackagePath": "staticwebassets\\img\\sportwear.jpg"
     },
     {
       "Id": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\user.jpg",

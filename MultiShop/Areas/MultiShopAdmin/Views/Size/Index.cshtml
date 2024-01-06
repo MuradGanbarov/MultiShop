@@ -52,6 +52,20 @@
                             }
                         </tbody>
                     </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item @(Model.CurrentPage-1<=0?"disabled":"")">
+                                <a class="page-link" asp-route-page="@(Model.CurrentPage-2)" asp-action="Index" asp-controller="size">Previous</a>
+                            </li>
+                            @for (int i = 1; i <= Model.TotalPage; i++)
+                            {
+                                <li class="page-item @(i==Model.CurrentPage?"disabled":"")"><a class="page-link" asp-route-page="@(i-1)" asp-action="Index" asp-controller="size">@i</a></li>
+                            }
+                            <li class="page-item @(Model.CurrentPage==Model.TotalPage?"disabled":"")">
+                                <a class="page-link" asp-route-page="@(Model.CurrentPage)" asp-action="Index" asp-controller="size">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
