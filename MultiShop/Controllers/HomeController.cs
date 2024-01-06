@@ -14,14 +14,17 @@ namespace MultiShop.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page)
         {
             HomeVM vm = new()
             {
-                Slides = await _context.Slides.OrderBy(s=>s.Order).Take(3).ToListAsync(),
-                Products = await _context.Products.Include(p=>p.ProductImages).Include(p=>p.Category).ToListAsync(),
+                Slides = await _context.Slides.OrderBy(s => s.Order).Take(3).ToListAsync(),
+                Products = await _context.Products.Include(p => p.ProductImages).Include(p => p.Category).ToListAsync(),
+                Categories = await _context.Categories.Include(p => p.Products).ToListAsync(),
                 
             };
+
+
             return View(vm);
         }
     }

@@ -82,27 +82,27 @@
 </div>
 <!-- Featured End -->
 <!-- Categories Start -->
-<@* div class="container-fluid pt-5">
+<div class="container-fluid pt-5">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
     <div class="row px-xl-5 pb-3">
         @foreach(Category category in Model.Categories)
         {
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <a class="text-decoration-none" asp-controller="shop" asp-action="index" asp-route-id="@category.Id">
+                <a class="text-decoration-none" asp-controller="shop" asp-action="index" asp-route-catId="@category.Id">
                     <div class="cat-item d-flex align-items-center mb-4">
                         <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                            <img class="img-fluid" src="~/img/@" alt="">
+                            <img class="img-fluid" src="~/category/@category.Image" alt="@category.Name">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>@category.Name</h6>
+                            <small class="text-body">@category.Products.Count()</small>
                         </div>
                     </div>
                 </a>
             </div>
         }
     </div>
-</div> *@
+</div> 
 <!-- Categories End -->
 <!-- Products Start -->
 <div class="container-fluid pt-5 pb-3">
