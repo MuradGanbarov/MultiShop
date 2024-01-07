@@ -95,7 +95,7 @@
                         </div>
                         <div class="flex-fill pl-3">
                             <h6>@category.Name</h6>
-                            <small class="text-body">@category.Products.Count()</small>
+                            <small class="text-body ">@category.Products.Count @(category.Products.Count > 1 ? "products" : "product")</small>
                         </div>
                     </div>
                 </a>
@@ -124,7 +124,7 @@
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href="">@product.Name</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$@product.Price</h5><h6 class="text-muted ml-2"></h6>
+                            <h5>$@(product.Price-product.Discount)</h5><h6 class="text-muted ml-2">@product.Price</h6>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <small class="fa fa-star text-primary mr-1"></small>

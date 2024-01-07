@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+W1sRoVqOXI7BIryJ2vMk6r7Cq+vDKWBkSLP1xH7vhk=",
+  "Hash": "7MVGJqyJFepDLDc9s6/I7MkeePiwxwlf1we9b+qSJ6E=",
   "Source": "MultiShop",
   "BasePath": "_content/MultiShop",
   "Mode": "Default",
@@ -1853,6 +1853,23 @@
       "OriginalItemSpec": "wwwroot\\css\\style.min.css"
     },
     {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\3ba9ee9f-d296-4db7-9e08-025c44bf40ea.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "img/3ba9ee9f-d296-4db7-9e08-025c44bf40ea.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\3ba9ee9f-d296-4db7-9e08-025c44bf40ea.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\599b95ee-1e16-47e4-90c8-a2311b5a6b0f.jpg",
       "SourceId": "MultiShop",
       "SourceType": "Discovered",
@@ -2023,6 +2040,23 @@
       "OriginalItemSpec": "wwwroot\\img\\b33a4ead-8f51-4520-8fbc-525f75b2f1b4.jpg"
     },
     {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\b5844276-b5f7-4478-ac57-aa857157f911.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "img/b5844276-b5f7-4478-ac57-aa857157f911.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\b5844276-b5f7-4478-ac57-aa857157f911.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\bc262b7f-50d3-4f49-91df-71229cf10824.jpg",
       "SourceId": "MultiShop",
       "SourceType": "Discovered",
@@ -2191,6 +2225,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\cat-4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\d250a60f-b00f-4767-bf20-f869f3651708.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "img/d250a60f-b00f-4767-bf20-f869f3651708.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\d250a60f-b00f-4767-bf20-f869f3651708.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\d9b5442a-a810-4407-87a3-7ae3e770438a.jpg",
+      "SourceId": "MultiShop",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\",
+      "BasePath": "_content/MultiShop",
+      "RelativePath": "img/d9b5442a-a810-4407-87a3-7ae3e770438a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\d9b5442a-a810-4407-87a3-7ae3e770438a.jpg"
     },
     {
       "Identity": "C:\\Users\\Murad\\Desktop\\MultiShop\\MultiShop\\wwwroot\\img\\e3295dec-201e-4a34-b4fd-9a90f96efc84.jpg",

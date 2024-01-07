@@ -1,5 +1,6 @@
 ﻿@{
     ProductImage main = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == true);
+    ProductImage notMain = Model.ProductImages.FirstOrDefault(pi => pi.IsPrimary == false);
 }
 
 @model UpdateProductVM
@@ -24,20 +25,15 @@
                                 <span class="text-danger" asp-validation-for="MainPhoto"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="SliderPhoto">Slider Image</label>
-                                <input asp-for="SliderPhoto" class="form-control" accept="image/*">
-                                <span class="text-danger" asp-validation-for="SliderPhoto"></span>
+                                <img style="width:150px;height:150px;" src="~/img/@notMain.URL" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HoverPhoto">Slider Image</label>
+                                <input asp-for="HoverPhoto" class="form-control" accept="image/*">
+                                <span class="text-danger" asp-validation-for="HoverPhoto"></span>
                             </div>
                             <div class="form-group d-flex">
 
-                                @foreach (ProductImage image in Model.ProductImages.Where(pi => pi.IsPrimary == false))
-                                {
-                                    <div class="position-relative">
-                                        <img style="width:150px;height:150px;" src="~/img/@image.URL" />
-                                        <button type="button" style="right:5px;top:5px;" class="cus-delete btn btn-danger position-absolute">X</button>
-                                        <input asp-for="SliderPhoto" type="hidden" value="@image.Id">
-                                    </div>
-                                }
                             </div>
                             <div class="form-group">
                                 <label asp-for="Name">Name</label>
@@ -50,13 +46,18 @@
                                 <span class="text-danger" asp-validation-for="Price"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Discount">Discount</label>
+                                <input asp-for="Discount" class="form-control" placeholder="Discount">
+                                <span class="text-danger" asp-validation-for="Discount"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="Description">Description</label>
                                 <input asp-for="Description" class="form-control" placeholder="Description">
                                 <span class="text-danger" asp-validation-for="Description"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="CategoryId">Category</label>
-                                <select asp-for="CategoryId" asp-items="new SelectList(@Model.Categories,nameof(Category.Id),nameof(Category.Name))" class="form-control">
+                                <select asp-for="CategoryId" asp-items="new SelectList(Model.Categories,nameof(Category.Id),nameof(Category.Name))" class="form-control">
                                 </select>
 
                                 <span class="text-danger" asp-validation-for="CategoryId"></span>

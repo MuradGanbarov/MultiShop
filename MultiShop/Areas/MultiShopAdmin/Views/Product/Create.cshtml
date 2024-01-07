@@ -32,13 +32,18 @@
                                 <span class="text-danger" asp-validation-for="Price"></span>
                             </div>
                             <div class="form-group">
+                                <label asp-for="Discount">Discount</label>
+                                <input asp-for="Discount" class="form-control" placeholder="Discount">
+                                <span class="text-danger" asp-validation-for="Discount"></span>
+                            </div>
+                            <div class="form-group">
                                 <label asp-for="Description">Description</label>
                                 <input asp-for="Description" class="form-control" placeholder="Description">
                                 <span class="text-danger" asp-validation-for="Description"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="CategoryId">Category</label>
-                                <select asp-for="CategoryId" asp-items="new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name))" class="form-control">
+                                <select asp-for="CategoryId" asp-items="new SelectList(Model.Categories,nameof(Category.Id),nameof(Category.Name))" class="form-control">
                                     <option selected disabled>Choose Category</option>
                                 </select>
 
@@ -47,14 +52,14 @@
 
                             <div class="form-group">
                                 <label asp-for="ColorIds">Colors</label>
-                                <select asp-for="ColorIds" asp-items="new SelectList(ViewBag.Colors,nameof(Color.Id),nameof(Color.Name))" class="form-control">
+                                <select asp-for="ColorIds" asp-items="new SelectList(Model.Colors,nameof(Color.Id),nameof(Color.Name))" class="form-control">
                                 </select>
                                 <span class="text-danger" asp-validation-for="ColorIds"></span>
                             </div>
 
                             <div class="form-group">
                                 <label asp-for="SizeIds">Sizes</label>
-                                <select asp-for="SizeIds" asp-items="new SelectList(ViewBag.Sizes,nameof(Color.Id),nameof(Color.Name))" class="form-control">
+                                <select asp-for="SizeIds" asp-items="new SelectList(Model.Sizes,nameof(Color.Id),nameof(Color.Name))" class="form-control">
                                 </select>
                                 <span class="text-danger" asp-validation-for="SizeIds"></span>
                             </div>

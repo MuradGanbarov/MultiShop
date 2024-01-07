@@ -7,8 +7,10 @@ namespace MultiShop.Areas.MultiShopAdmin.ViewModels
     {
         public string Name { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Price can not be equal or less than 0")]
+        [Range(1, double.MaxValue, ErrorMessage = "Price can not be equal or less than 0")]
         public decimal Price { get; set; }
+        [Range(0,double.MaxValue,ErrorMessage ="Discount can not be less than 0")]
+        public decimal? Discount { get; set; }
         [Required]
         [MinLength(10, ErrorMessage = "Description can contain minimum 10 characters")]
         public string Description { get; set; }

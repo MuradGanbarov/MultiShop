@@ -5,6 +5,7 @@ using MultiShop.Areas.MultiShopAdmin.Models.Utilities.Enums;
 using MultiShop.Areas.MultiShopAdmin.ViewModels;
 using MultiShop.DAL;
 using MultiShop.Models;
+using MultiShop.ViewModels;
 
 namespace MultiShop.Areas.MultiShopAdmin.Controllers
 {
@@ -36,10 +37,13 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categories = await GetCategoriesAsync();
-            ViewBag.Sizes = await GetSizesAsync();
-            ViewBag.Colors = await GetColorsAsync();
-            return View();
+            CreateProductVM vm = new()
+            {
+                Categories = await GetCategoriesAsync(),
+                Sizes = await GetSizesAsync(),
+                Colors = await GetColorsAsync(),
+            };
+            return View(vm);
 
         }
 
@@ -48,12 +52,14 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
         public async Task<IActionResult> Create(CreateProductVM productVM)
         {
             if (!ModelState.IsValid) return View();
-            bool result = await _context.Categories.AnyAsync(c => c.Id == productVM.CategoryId);
+            bool result = _context.Categories.Any(c => c.Id == productVM.CategoryId);
             if (!result)
             {
-                ViewBag.Categories = await GetCategoriesAsync();
-                ViewBag.Colors = await GetColorsAsync();
-                ViewBag.Sizes = await GetSizesAsync();
+
+                productVM.Categories = await GetCategoriesAsync();
+                productVM.Sizes = await GetSizesAsync();
+                productVM.Colors = await GetColorsAsync();
+                
                 ModelState.AddModelError("Category", "Category doesn't exists");
             }
 
@@ -86,9 +92,10 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
                 Name = productVM.Name,
                 Description = productVM.Description,
                 Price = productVM.Price,
+                Discount = productVM.Discount,
                 CategoryId = productVM.CategoryId,
                 ProductColors = new List<ProductColor>(),
-                ProductImages = new List<ProductImage> { MainPhoto }
+                ProductImages = new List<ProductImage> { MainPhoto}
 
             };
             foreach (int colorId in productVM.ColorIds)
@@ -96,9 +103,9 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
                 bool colresult = await _context.Colors.AnyAsync(c => c.Id == colorId);
                 if (!colresult)
                 {
-                    ViewBag.Categories = await GetCategoriesAsync();
-                    ViewBag.Colors = await GetColorsAsync();
-                    ViewBag.Sizes = await GetSizesAsync();
+                    ViewBag.Categories = GetCategoriesAsync();
+                    ViewBag.Colors = GetColorsAsync();
+                    ViewBag.Sizes =  GetSizesAsync();
                     ModelState.AddModelError("Color", "Color doesn't exists");
                     return View();
                 }
@@ -124,6 +131,7 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
                 Name = existed.Name,
                 Description = existed.Description,
                 Price = existed.Price,
+                Discount = existed.Discount,
                 CategoryId = existed.CategoryId,
                 Categories = await GetCategoriesAsync(),
                 SizeIds = existed.ProductSizes.Select(existed => existed.SizeId).ToList(),
@@ -136,151 +144,159 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
             return View(vm);
         }
         [HttpPost]
-        public async Task<IActionResult> Update(int id, UpdateProductVM productVM)
+        public async Task<IActionResult> Update(int id,UpdateProductVM vm)
         {
-            Product existed = await _context.Products.Include(pi => pi.ProductImages).Include(p => p.ProductColors).Include(p=>p.ProductSizes).FirstOrDefaultAsync(p => p.Id == id);
-            productVM.ProductImages = existed.ProductImages;
+            if(id<=0) return BadRequest();
+
+            Product existed = await _context.Products.Include(p => p.ProductImages).Include(p => p.Category).Include(p => p.ProductColors).Include(p => p.ProductSizes).FirstOrDefaultAsync(p => p.Id == id);
+
             if (!ModelState.IsValid)
             {
-                productVM.Categories = await _context.Categories.ToListAsync();
-                productVM.Colors = await _context.Colors.ToListAsync();
-                productVM.Sizes = await _context.Sizes.ToListAsync();
-                return View(productVM);
+                vm.Categories = await GetCategoriesAsync();
+                vm.Colors= await GetColorsAsync();
+                vm.Sizes= await GetSizesAsync();
+                vm.ProductImages = existed.ProductImages;
+                return View(vm);
+            }
+
+            if(vm.Name.ToLower().Trim() != existed.Name.ToLower().Trim())
+            {
+                if(await _context.Products.AnyAsync(p=>p.Name == vm.Name))
+                {
+                    ModelState.AddModelError("Name", "This product with this name already exists");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors= await GetColorsAsync();
+                    vm.Sizes= await GetSizesAsync();
+                    vm.ProductImages= existed.ProductImages;
+                    return View(vm);
+                }
+            }
+
+            if(vm.CategoryId != existed.CategoryId)
+            {
+                if(!await _context.Categories.AnyAsync(c=>c.Id == existed.CategoryId))
+                {
+                    ModelState.AddModelError("CatId", "This category doesn't exist, please try again");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors= await GetColorsAsync();
+                    vm.Sizes= await GetSizesAsync();
+                    vm.ProductImages = existed.ProductImages;
+                    return View(vm);
+                }
+
+                existed.CategoryId = vm.CategoryId;
+            }
+
+            if(vm.MainPhoto is not null)
+            {
+                if (!vm.MainPhoto.IsValidType(FileType.Image))
+                {
+                    ModelState.AddModelError("MainPhoto", "Photo should be image type");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors= await GetColorsAsync();
+                    vm.Sizes= await GetSizesAsync();
+                    vm.ProductImages = existed.ProductImages;
+                    return View(vm);
+                }
+
+                if (!vm.MainPhoto.IsValidSize(5, FileSize.Megabite))
+                {
+                    ModelState.AddModelError("MainPhoto", "Photo should be 5 mb");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors = await GetColorsAsync();
+                    vm.Sizes = await GetSizesAsync();
+                    vm.ProductImages = existed.ProductImages;
+                    return View(existed);
+                }
+                ProductImage mainPhoto = existed.ProductImages.FirstOrDefault(pi=>pi.IsPrimary==true);
+                mainPhoto.URL.Delete(_env.WebRootPath, "img");
+                mainPhoto.URL = await vm.MainPhoto.CreateAsync(_env.WebRootPath, "img");
+
+            }
+
+            if(vm.HoverPhoto is not null)
+            {
+                if (!vm.HoverPhoto.IsValidType(FileType.Image))
+                {
+                    ModelState.AddModelError("HoverPhoto", "Photo should be image type");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors = await GetColorsAsync();
+                    vm.Sizes = await GetSizesAsync();
+                    vm.ProductImages = existed.ProductImages;
+                    return View(vm);
+                }
+                if (!vm.HoverPhoto.IsValidSize(5, FileSize.Megabite))
+                {
+                    ModelState.AddModelError("HoverPhoto", "Photo should be 5 mb");
+                    vm.Categories = await GetCategoriesAsync();
+                    vm.Colors = await GetColorsAsync();
+                    vm.Sizes = await GetSizesAsync();
+                    vm.ProductImages = existed.ProductImages;
+                    return View(existed);
+                }
+
+                ProductImage hoverPhoto = existed.ProductImages.FirstOrDefault(pi => pi.IsPrimary == false);
+                hoverPhoto.URL.Delete(_env.WebRootPath, "img");
+                hoverPhoto.URL = await vm.HoverPhoto.CreateAsync(_env.WebRootPath, "img");
+
+
+            }
+
+
+            if (vm.ColorIds is not null)
+            {
+                foreach (int colId in vm.ColorIds)
+                {
+                    if (!await _context.Colors.AnyAsync(t => t.Id == colId))
+                    {
+                        ModelState.AddModelError("ColIds", "This color doesn't exist,please try again");
+                        vm.Categories = await GetCategoriesAsync();
+                        vm.Colors = await GetColorsAsync();
+                        vm.Sizes = await GetSizesAsync();
+                        vm.ProductImages = existed.ProductImages;
+                        return View(vm);
+                    }
+                    if (!existed.ProductColors.Exists(pc => pc.ColorId == colId))
+                    {
+                        existed.ProductColors.Add(new ProductColor { ColorId = colId });
+                    }
+
+                    existed.ProductColors = existed.ProductColors.Where(pc => vm.ColorIds.Exists(id => id== pc.ColorId)).ToList();
+
+                }
+            }
+            if(vm.SizeIds is not null)
+            {
+                foreach(int sizeId in  vm.SizeIds)
+                {
+                    if(!await _context.Sizes.AnyAsync(s=>s.Id== sizeId))
+                    {
+                        ModelState.AddModelError("SizeIds", "This size doesn't exist,please try again");
+                        vm.Categories = await GetCategoriesAsync();
+                        vm.Colors = await GetColorsAsync();
+                        vm.Sizes = await GetSizesAsync();
+                        vm.ProductImages = existed.ProductImages;
+                        return View(vm);
+                    }
+
+                    if (!existed.ProductSizes.Exists(pc => pc.SizeId == sizeId))
+                    {
+                        existed.ProductSizes.Add(new ProductSize { SizeId = sizeId });
+                    }
+
+                    existed.ProductSizes = existed.ProductSizes.Where(pc => vm.SizeIds.Exists(id => id == pc.SizeId)).ToList();
+
+                }
             }
             
-            if (existed is null) return NotFound();
-
-            bool result = await _context.Categories.AnyAsync(c => c.Id == productVM.CategoryId);
-            if (!result)
-            {
-                productVM.Categories = await _context.Categories.ToListAsync();
-                productVM.Colors = await _context.Colors.ToListAsync();
-                productVM.Sizes = await _context.Sizes.ToListAsync();
-                ModelState.AddModelError("CategoryId", "Bele bir category movcud deyil");
-                return View(productVM);
-            }
-            if (productVM.MainPhoto is not null)
-            {
-                if (!productVM.MainPhoto.IsValidType(FileType.Image))
-                {
-                    productVM.Categories = await _context.Categories.ToListAsync();
-                    productVM.Colors = await _context.Colors.ToListAsync();
-                    productVM.Sizes = await _context.Sizes.ToListAsync();
-                    ModelState.AddModelError("MainPhoto", "File novu uygun deyil");
-                    return View(productVM);
-                }
-                if (!productVM.MainPhoto.IsValidSize(5,FileSize.Megabite))
-                {
-                    productVM.Categories = await _context.Categories.ToListAsync();
-                    productVM.Colors = await _context.Colors.ToListAsync();
-                    ModelState.AddModelError("MainPhoto", "File olcusu uygun deyil");
-                    return View(productVM);
-                }
-
-            }
-
-
-            existed.ProductColors.RemoveAll(pc => !productVM.ColorIds.Exists(cId => cId == pc.ColorId));
-            existed.ProductSizes.RemoveAll(ps => !productVM.SizeIds.Exists(sId => sId == ps.SizeId));
-            List<int> creatable = productVM.ColorIds.Where(cId => !existed.ProductColors.Exists(pc => pc.ColorId == cId)).ToList();
-            List<int> createablesize = productVM.SizeIds.Where(sId=> !existed.ProductSizes.Exists(ps=>ps.SizeId == sId)).ToList();
-            foreach (int sizeId in createablesize)
-            {
-                bool sizeResult = await _context.Colors.AnyAsync(t => t.Id == sizeId);
-                if (!sizeResult)
-                {
-                    productVM.Categories = await _context.Categories.ToListAsync();
-                    productVM.Sizes = await _context.Sizes.ToListAsync();
-                    ModelState.AddModelError("ColorIds", "Bele bir color movcud deyil");
-                    return View(productVM);
-                }
-                existed.ProductSizes.Add(new ProductSize
-                {
-                    SizeId = sizeId
-                });
-            }
-
-            foreach (int colorId in creatable)
-            {
-                bool colorResult = await _context.Colors.AnyAsync(t => t.Id == colorId);
-                if (!colorResult)
-                {
-                    productVM.Categories = await _context.Categories.ToListAsync();
-                    productVM.Colors = await _context.Colors.ToListAsync();
-                    ModelState.AddModelError("ColorIds", "Bele bir color movcud deyil");
-                    productVM.Sizes = await _context.Sizes.ToListAsync();
-                    ModelState.AddModelError("SizesIds", "Bele bir size movcud deyil");
-                    return View(productVM);
-                }
-                existed.ProductColors.Add(new ProductColor
-                {
-                    ColorId = colorId
-                });
-            }
-
-            if (productVM.MainPhoto is not null)
-            {
-                string fileName = await productVM.MainPhoto.CreateAsync(_env.WebRootPath, "img");
-
-                ProductImage mainImage = existed.ProductImages.FirstOrDefault(pi => pi.IsPrimary == true);
-                mainImage.URL.Delete(_env.WebRootPath, "img");
-                _context.ProductImages.Remove(mainImage);
-
-                existed.ProductImages.Add(new ProductImage
-                {
-                    Alternative = productVM.Name,
-                    IsPrimary = true,
-                    URL = fileName
-                });
-            }
-           
-            if (productVM.ImageIds is null)
-            {
-                productVM.ImageIds = new List<int>();
-            }
-            List<ProductImage> removeable = existed.ProductImages.Where(pi => !productVM.ImageIds.Exists(imgId => imgId == pi.Id) && pi.IsPrimary == null).ToList();
-            foreach (ProductImage pImage in removeable)
-            {
-                pImage.URL.Delete(_env.WebRootPath, "img");
-                existed.ProductImages.Remove(pImage);
-            }
-
-
-            TempData["Message"] = "";
-            if (productVM.SliderPhoto is not null)
-            {
-                foreach (IFormFile photo in productVM.SliderPhoto)
-                {
-                    if (!photo.IsValidType(FileType.Image))
-                    {
-                        TempData["Message"] += $"<p class=\"text-danger\">{photo.FileName} file tipi uygun deyil</p>";
-                        continue;
-                    }
-                    if (!photo.IsValidSize(5))
-                    {
-                        TempData["Message"] += $"<p class=\"text-danger\">{photo.FileName} file olcusu uygun deyil</p>";
-                        continue;
-                    }
-
-                    existed.ProductImages.Add(new ProductImage
-                    {
-                        Alternative = productVM.Name,
-                        IsPrimary = null,
-                        URL = await photo.CreateAsync(_env.WebRootPath, "img")
-                    });
-                }
-
-            }
-
-
-            existed.Name = productVM.Name;
-            existed.Description = productVM.Description;
-            existed.Price = productVM.Price;
-            existed.CategoryId = productVM.CategoryId;
-
+            existed.Name = vm.Name;
+            existed.Description = vm.Description;
+            existed.Price = vm.Price;
+            existed.Discount = vm.Discount;
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
 
@@ -304,7 +320,7 @@ namespace MultiShop.Areas.MultiShopAdmin.Controllers
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0) return BadRequest();
-            Product product = await _context.Products.Include(p => p.ProductImages.Where(pi => pi.IsPrimary == true)).Include(p => p.ProductColors).Include(p => p.ProductSizes).FirstOrDefaultAsync(p => p.Id == id);
+            Product product = await _context.Products.Include(p=>p.Category).Include(p => p.ProductImages).Include(p => p.ProductColors).ThenInclude(pc=>pc.Color).Include(p => p.ProductSizes).ThenInclude(ps=>ps.Size).FirstOrDefaultAsync(p => p.Id == id);
             if (product is null) return NotFound();
             return View(product);
         }
